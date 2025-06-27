@@ -1,0 +1,27 @@
+# 1. Создаём новую чистую папку
+mkdir vk-app-fixed
+cd vk-app-fixed
+
+# 2. Создаём минимальный рабочий index.html
+cat > index.html <<EOL
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VK App Test</title>
+    <script src="https://vk.com/js/api/openapi.js?169"></script>
+    <style>body {font-family: Arial; padding: 20px;}</style>
+</head>
+<body>
+    <h1>Моё приложение работает!</h1>
+    <div id="vk_auth"></div>
+    <script>
+        VK.init({apiId: YOUR_APP_ID});
+        VK.Widgets.Auth("vk_auth", {
+            onAuth: function(data) {
+                alert("Привет, ID" + data.uid);
+            }
+        });
+    </script>
+</body>
+</html>
+EOL
